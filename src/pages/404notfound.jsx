@@ -1,9 +1,11 @@
-function Notfound() {
+function NotFound() {
   return (
     <>
-      <h1>🤷‍♂️ NotFound</h1>
+      <div>404 Not Found</div>
+      <p>Halaman tidak ditemukan</p>
+      <p>Balik, ngapain di sini</p>
     </>
   );
 }
 
-export default Notfound;
+export default NotFound;
