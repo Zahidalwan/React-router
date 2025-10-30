@@ -1,20 +1,19 @@
 import DataTable from "@/components/dataTable";
 import { columns } from "@/pages/dashboard/dasboardUser/columsUser";
 import LayoutDashboard from "@/components/layout/layoutDashboard";
-import { getUsers} from "@/utils/api/users";
+import { getUsers } from "@/utils/api/users";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export default function DashboardUser() {
-
   const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
 
   const handleAddUser = () => {
-    navigate('/dashboard/user/add');
-  }
+    navigate("/dashboard/user/add");
+  };
 
   const fetchUsers = async () => {
     try {
@@ -23,7 +22,7 @@ export default function DashboardUser() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -31,7 +30,9 @@ export default function DashboardUser() {
 
   return (
     <LayoutDashboard>
-      <Button onClick={handleAddUser} className="mb-4">Add User</Button>
+      <Button onClick={handleAddUser} className="mb-4">
+        Add User
+      </Button>
       <DataTable columns={columns} data={users} />
     </LayoutDashboard>
   );

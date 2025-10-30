@@ -10,6 +10,8 @@ import { FormControl } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { addUser } from "@/utils/api/users";
 import { FormMessage } from "@/components/ui/form";
+import LayoutDashboard from "@/components/layout/layoutDashboard";
+import Swal from "sweetalert2";
 
 const addUserSchema = z.object({
   fullname: z
@@ -48,136 +50,149 @@ function AddUser() {
     },
   });
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmitUser = async (data) => {
     try {
       const message = await addUser(data);
-      alert("User berhasil ditambahkan: " + message);
+      Swal.fire({
+        title: "Sukses",
+        text: "sukses menambahkan user",
+        icon: "success",
+      });
     } catch (error) {
       console.error("Error adding user:", error);
-      alert("Gagal menambahkan user.");
+      Swal.fire({
+        title: "Error",
+        text: "Gagal menambahkan user",
+        icon: "error",
+      });
     }
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Nama Lengkap */}
-        <FormField
-          control={form.control}
-          name="fullname"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">
-                Nama Lengkap
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan Nama Lengkap" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <LayoutDashboard>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmitUser)} className="space-y-8">
+          {/* Nama Lengkap */}
+          <FormField
+            control={form.control}
+            name="fullname"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">
+                  Nama Lengkap
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Nama Lengkap" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Username */}
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">Username</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan Username" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Username */}
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">
+                  Username
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Username" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Password */}
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">Password</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Masukkan Password"
-                  {...field}
-                  type="password"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Password */}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">
+                  Password
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Masukkan Password"
+                    {...field}
+                    type="password"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Email */}
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan Email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Email */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Nomor Telepon */}
-        <FormField
-          control={form.control}
-          name="phone_number"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">
-                Nomor Telepon
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan Nomor Telepon" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Nomor Telepon */}
+          <FormField
+            control={form.control}
+            name="phone_number"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">
+                  Nomor Telepon
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Nomor Telepon" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Umur */}
-        <FormField
-          control={form.control}
-          name="age"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">Umur</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan Umur" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Umur */}
+          <FormField
+            control={form.control}
+            name="age"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">Umur</FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Umur" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Alamat */}
-        <FormField
-          control={form.control}
-          name="address"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-black! text-base">Alamat</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan Alamat" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Alamat */}
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-black! text-base">Alamat</FormLabel>
+                <FormControl>
+                  <Input placeholder="Masukkan Alamat" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    </LayoutDashboard>
   );
 }
 
